@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: graphite-linux-x86_64
-          path: ${GITHUB_WORKSPACE}/graphite-x86_64.AppImage
+          path: graphite-x86_64.AppImage
 
   build_window_x64:
     runs-on: windows-latest
