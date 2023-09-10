@@ -43,14 +43,15 @@ jobs:
           --executable ./graphite/graphite \
           -d ../graphite.desktop \
           -i ../graphite.svg \
-          --output appimage
+          --output appimage && \
+          mv ${GITHUB_WORKSPACE}/build/Graphite*-x86_64.AppImage ${GITHUB_WORKSPACE}/graphite-x86_64.AppImage
 
       - name: Collect artifacts
         if: success()
         uses: actions/upload-artifact@v3
         with:
           name: graphite-linux-x86_64
-          path: ${GITHUB_WORKSPACE}/build/Graphite*-x86_64.AppImage
+          path: ${GITHUB_WORKSPACE}/graphite-x86_64.AppImage
 
   build_window_x64:
     runs-on: windows-latest
@@ -129,4 +130,4 @@ jobs:
         with:
           commit: master
           tag: ${{ github.run_number }}
-          artifacts: "graphite-linux-x86_64/graphite-linux-x86_64.tar.gz,graphite-windows-x86_64/graphite-windows-x86_64.zip"
+          artifacts: "graphite-linux-x86_64/graphite-x86_64.AppImage,graphite-windows-x86_64/graphite-windows-x86_64.zip"
